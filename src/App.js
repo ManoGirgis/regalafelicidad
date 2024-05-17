@@ -4,15 +4,20 @@ import Categoria from './components/Pages/Home/Categoria/Categoria';
 import Header from './components/Common/Header';
 import Footer from './components/Common/Footer';
 import Users from './components/Pages/Home/Users/Users';
+import Blog from './components/Pages/Blogs/blog';
 
 function App() {
   return (
     <div className='App'>
       <Header />
       <main>
-        <Posts />
+        {/* <Blog></Blog> */}
+
+
+
+        {/* <Posts />
         <Categoria />
-        <Users />
+        <Users /> */}
       </main>
       <Footer />
     </div>
