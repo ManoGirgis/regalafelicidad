@@ -9,7 +9,7 @@ export class Card extends Component {
             <div key={this.props.TheKey}>
                 {/* <img src={this.props.imag}></img> */}
                 <h1>{this.props.title}</h1>
-                <p>{Children}</p>
+                <p>{this.props.text}</p>
                 <button>{this.props.button}</button>
             </div>
         )
