@@ -1,23 +1,26 @@
 import './App.css';
-import Posts from './components/Pages/Home/Posts/posts';
-import Categoria from './components/Pages/Home/Categoria/Categoria';
+// import Categoria from './components/Pages/Home/Categoria/Categoria';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Common/Header';
 import Footer from './components/Common/Footer';
-import Users from './components/Pages/Home/Users/Users';
-import Blog from './components/Pages/Blogs/blog';
+// import Users from './components/Pages/Home/Users/Users';
+import Page from './components/Pages/Blogs/page';
+import Empty from './components/Common/Empty';
+import Products from './components/Pages/Home/Products/products';
 
 function App() {
   return (
     <div className='App'>
       <Header />
       <main>
-        {/* <Blog></Blog> */}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/posts" element={<Page />} />
+            <Route path="/prods" element={<Products />} />
+            <Route path="/" element={<Empty />} />
+          </Routes>
+        </BrowserRouter>
 
-
-
-        {/* <Posts />
-        <Categoria />
-        <Users /> */}
       </main>
       <Footer />
     </div>
