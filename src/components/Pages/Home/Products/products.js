@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import Card from '../../../Common/Card';
 const Products = () => {
     const [products, setProducts] = useState([]);
 
@@ -26,14 +26,12 @@ const Products = () => {
     return (
         <div>
             <h1>Products</h1>
-            <ul>
-                {products.map(product => (
-                    <li key={product.id}>
-                        {product.name} - {product.price}
-
-                    </li>
-                ))}
-            </ul>
+            {products.map(product => (
+                <>
+                    {/* {product.images.src}  imag={product.images.src} */}
+                    < Card TheKey={product.id} title={product.name} button="Add to cart">{product.price}</Card>
+                </>
+            ))}
         </div>
     );
 };
