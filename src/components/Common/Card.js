@@ -6,8 +6,9 @@ export class Card extends Component {
     }
     render() {
         return (
-            <div key={this.props.TheKey}>
+            <div className='card-container' key={this.props.id}>
                 {/* <img src={this.props.imag}></img> */}
+                <img src={this.props.image}></img>
                 <h1>{this.props.title}</h1>
                 <p>{this.props.text}</p>
                 <button>{this.props.button}</button>

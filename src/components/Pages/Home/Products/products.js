@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from '../../../Common/Card';
+import WoocommerceConnection from '../../../../connections/woocommerce';
+
 const Products = () => {
     const [products, setProducts] = useState([]);
-
+    // useEffect(() => {
+    //     setProducts(WoocommerceConnection('products', ''))
+    // }, [])
     useEffect(() => {
         const fetchProducts = async () => {
             const consumerKey = process.env.REACT_APP_WC_CONSUMER_KEY;
@@ -23,15 +27,19 @@ const Products = () => {
         fetchProducts();
     }, []);
 
+
+
     return (
         <div>
             <h1>Products</h1>
-            {products.map(product => (
-                <>
-                    {/* {product.images.src}  imag={product.images.src} */}
-                    < Card TheKey={product.id} title={product.name} button="Add to cart" text={product.price}></Card>
-                </>
-            ))}
+            <div className='card-place-holder'>
+                {products.map(product => (
+                    <>
+                        {/* {product.images.src}*/}  {product.images.src}
+                        < Card id={product.id} title={product.name} button="Add to cart" text={product.price}></Card>
+                    </>
+                ))}
+            </div>
         </div>
     );
 };
