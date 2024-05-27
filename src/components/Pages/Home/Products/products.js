@@ -1,47 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Card from '../../../Common/Card';
 import WoocommerceConnection from '../../../../connections/woocommerce';
-
+import Showprod from './showprod';
+let x = 0;
 const Products = () => {
-    const [products, setProducts] = useState([]);
-    // useEffect(() => {
-    //     setProducts(WoocommerceConnection('products', ''))
-    // }, [])
+    // Utiliza el hook de tu conexión personalizada
+    const { data: products, loading, error } = WoocommerceConnection('products');
+    const [selectedProdId, setSelectedProdId] = useState(null);
+    // Si deseas cargar los productos solo una vez al montar el componente, puedes usar useEffect
+    // con un array de dependencias vacío.
     useEffect(() => {
-        const fetchProducts = async () => {
-            const consumerKey = process.env.REACT_APP_WC_CONSUMER_KEY;
-            const consumerSecret = process.env.REACT_APP_WC_CONSUMER_SECRET;
-            const storeUrl = process.env.REACT_APP_WC_STORE_URL;
-            console.log(consumerKey, consumerSecret, storeUrl)
-            const url = `${storeUrl}/wp-json/wc/v3/products?consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`;
+        console.log(selectedProdId, x);
+    }, [x]);
 
-            try {
-                const response = await axios.get(url);
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
+    // Maneja el estado de carga y errores
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
 
-        fetchProducts();
-    }, []);
-
-
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+    const setprod = (id) => {
+        setSelectedProdId(id);
+        x++;
+    }
 
     return (
         <div>
-            <h1>Products</h1>
-            <div className='card-place-holder'>
-                {products.map(product => (
-                    <>
-                        {/* {product.images.src}*/}  {product.images.src}
-                        < Card id={product.id} title={product.name} button="Add to cart" text={product.price}></Card>
-                    </>
-                ))}
-            </div>
+            {selectedProdId ? (
+                <Showprod id={selectedProdId} />
+            ) : <>
+                <h1>Products</h1>
+                <div className='card-place-holder'>
+                    {products.map(product => (
+                        <Card
+                            onClick={() => setSelectedProdId(product.id)}
+                            key={product.id}
+                            id={product.id}
+                            title={product.name}
+                            button="Add to cart"
+                            text={product.price}
+                            // La propiedad product.images es un arreglo, por lo que debe especificarse la posición
+                            // de la imagen que se desea recuperar.
+                            image={product.images[0] ? product.images[0].src : ''}
+                            item="Product"
+                            click={setprod}
+
+                        />
+
+                    ))}
+                </div>
+            </>
+            }
         </div>
     );
 };
 
 export default Products;
+
+

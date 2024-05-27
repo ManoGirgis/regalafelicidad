@@ -83,3 +83,11 @@ hr {
   flex-wrap: wrap;
 
 }
+
+a:link {
+  text-decoration: none;
+}
+
+a {
+  color: black;
+}

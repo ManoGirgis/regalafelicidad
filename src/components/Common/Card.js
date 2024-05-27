@@ -1,4 +1,4 @@
-import React, { Children, Component } from 'react'
+import React, { Component } from 'react';
 
 export class Card extends Component {
     constructor(props) {
@@ -7,14 +7,24 @@ export class Card extends Component {
     render() {
         return (
             <div className='card-container' key={this.props.id}>
-                {/* <img src={this.props.imag}></img> */}
-                <img src={this.props.image}></img>
+                <img src={this.props.image} alt={this.props.title} />
                 <h1>{this.props.title}</h1>
                 <p>{this.props.text}</p>
-                <button>{this.props.button}</button>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button>{this.props.button}</button>
+                            </td>
+                            <td>
+                                <button onClick={this.props.click}>Show {this.props.item}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         )
     }
 }
 
-export default Card
+export default Card;
