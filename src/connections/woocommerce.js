@@ -18,8 +18,8 @@ const WoocommerceConnection = (required) => {
                 }
 
                 const url = `${storeUrl}/wp-json/wc/v3/${required}?consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`;
-
                 const response = await axios.get(url);
+                console.log(url);
                 setData(response.data);
                 setLoading(false);
             } catch (error) {

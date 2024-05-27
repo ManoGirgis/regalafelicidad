@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import WoocommerceConnection from "axios";
+import WoocommerceConnection from '../../../../connections/woocommerce';
 
 const Showprod = ({ id }) => {
-
-    const { data: product, loading, error } = WoocommerceConnection(`products/${id}`);
+    let thing = `products/${id}`;
+    const { data: product, loading, error } = WoocommerceConnection(thing);
 
     useEffect(() => {
-        console.log(product)
+        console.log(id)
     }, []);
     if (loading) { return <div>Cargando...</div>; }
     if (error) { return <div>Error: {error.message}</div>; }
@@ -22,9 +22,8 @@ const Showprod = ({ id }) => {
                         <th>Name: </th>
                         <th>Price: </th>
                     </tr>
-                    <tr>
-                        {/* <td>{product.name}</td>
-                        <td>{product.price}</td> */}
+                    <tr> <td>{product.name}</td>
+                        <td>{product.price}</td>
                     </tr>
                 </table>
             </td>

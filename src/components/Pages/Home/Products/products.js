@@ -43,7 +43,7 @@ const Products = () => {
                             text={product.price}
                             // La propiedad product.images es un arreglo, por lo que debe especificarse la posición
                             // de la imagen que se desea recuperar.
-                            image={product.images[0] ? product.images[0].src : ''}
+                            // image={product.images[0] ? product.images[0].src : ''}
                             item="Product"
                             click={setprod}
 
