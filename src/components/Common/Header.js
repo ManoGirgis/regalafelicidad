@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
     return (
         <header>
-            <nav>
+            <nav className='App-header'>
                 <ul className='header-navigators'>
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/posts">Posts</a></li>

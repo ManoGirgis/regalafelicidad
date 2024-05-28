@@ -1,12 +1,20 @@
+body {
+  background-color: wheat;
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: rgb(240, 240, 240, 0.8);
+  min-height: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header ul li a {
+  color: black;
 }
 
 .header-navigators {
@@ -34,36 +42,8 @@
   text-decoration: underline;
 }
 
-.container-blog {
-  margin-bottom: 20px;
-  background-color: whitesmoke;
-  margin-right: 20px;
-  margin-left: 20px;
-  border-radius: 1rem;
-  padding: 5px;
-  border: 1px solid;
-  border-color: transparent;
-}
-
-.info-blog {
-  display: block;
-  margin-bottom: 0;
-  margin-top: 5px;
-}
-
-.header-blog {
-  margin: 0 0 10px 0;
-  color: grey;
-}
-
-hr {
-  margin-top: 20px
-}
-
 .card-container {
   display: flex;
-  border: black;
-  border-style: solid;
   margin: 1rem;
   padding: 1rem;
   flex-direction: column;
@@ -71,6 +51,52 @@ hr {
   align-content: center;
   width: 25%;
   height: 400px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  transition: box-shadow 0.3s ease;
+  justify-content: space-between;
+}
+
+.card-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-container h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: contents;
+}
+
+.card-container p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-container table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.card-container button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #282c34;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-container button:hover {
+  background-color: #282c34;
+}
+
+.card-container img {
+  max-width: 90%;
+  max-height: 70%;
 }
 
 .card-place-holder {
@@ -82,6 +108,22 @@ hr {
   justify-content: space-evenly;
   flex-wrap: wrap;
 
+}
+
+.button-aligner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+.button-aligner a:hover {
+  /* background-color: #282c34; */
+  color: rgba(13, 13, 172, 0.87);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 a:link {

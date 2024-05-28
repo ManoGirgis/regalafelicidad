@@ -1,0 +1,25 @@
+.container-blog {
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 1rem;
+  padding: 5px;
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.info-blog {
+  display: block;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.header-blog {
+  margin: 0 0 10px 0;
+  color: grey;
+}
+
+hr {
+  margin-top: 20px
+}

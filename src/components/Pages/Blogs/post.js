@@ -15,7 +15,7 @@ const Post = (props) => {
     }, [id]);
 
     return (
-        <div>
+        <div className='container-blog'>
             <h1>{post.title?.rendered}</h1>
             <div dangerouslySetInnerHTML={{ __html: post.content?.rendered }} />
         </div>

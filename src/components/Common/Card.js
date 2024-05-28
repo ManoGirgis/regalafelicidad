@@ -7,21 +7,13 @@ export class Card extends Component {
     render() {
         return (
             <div className='card-container' key={this.props.id}>
-                {/* <img src={this.props.image} alt={this.props.title} /> */}
+                <img src={this.props.image} alt={this.props.title} />
                 <h1>{this.props.title}</h1>
                 <p>{this.props.text}</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button>{this.props.button}</button>
-                            </td>
-                            <td>
-                                <button onClick={this.props.click}>Show {this.props.item}</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className='button-aligner'>
+                    <button>{this.props.button}</button>
+                    <button onClick={() => this.props.click(this.props.id)}>Show {this.props.item}</button>
+                </div>
             </div>
         )
     }

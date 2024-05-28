@@ -1,0 +1,31 @@
+.product-details {
+  margin: 20px;
+}
+
+.product-details img {
+  max-width: 10rem;
+  max-height: 25rem;
+  height: auto;
+}
+
+.product-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-details td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.product-details td img {
+  display: block;
+  margin: 0 auto;
+}
+
+.product-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
