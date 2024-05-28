@@ -13,7 +13,6 @@ const Products = () => {
     // Si deseas cargar los productos solo una vez al montar el componente, puedes usar useEffect
     // con un array de dependencias vacío.
     useEffect(() => {
-        console.log("HOLAAA" + selectedProdId);
         // if (product.images[0].src) {
         //     console.log(product.images[0]);
         //     setimagen(product.images[0]);
@@ -48,8 +47,6 @@ const Products = () => {
                             title={product.name}
                             button="Add to cart"
                             text={product.price}
-                            // La propiedad product.images es un arreglo, por lo que debe especificarse la posición
-                            // de la imagen que se desea recuperar.
                             image={prodimg}
                             item="Product"
                             click={setprod}
