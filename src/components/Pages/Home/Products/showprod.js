@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import prodimg from '../../../../Images/prodimg.png';
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Navigation from "../../../Common/Navigation";
 
 const Showprod = (props) => {
-    let thing = `products/${props.id}`;
-    const { data: product, loading, error } = WoocommerceConnection(thing);
+    const [productId, setProductId] = useState(props.id);
     const [imagen, setimagen] = useState(prodimg);
+    let thing = `products/${productId}`;
+    const { data: product, loading, error } = WoocommerceConnection(thing);
     useEffect(() => {
         // if (product.images[0].src) {
         //     console.log(product.images[0]);
@@ -15,9 +15,23 @@ const Showprod = (props) => {
         // }
 
 
-    }, []);
+    }, [productId]);
     if (loading) { return <div>Cargando...</div>; }
     if (error) { return <div>Error: {error.message}</div>; }
+
+    const nextprod = (nextId) => {
+        setProductId(nextId);
+        reloadpg()
+    }
+    const prevprod = (prevId) => {
+        console.log("prev", prevId);
+        setProductId(prevId);
+        reloadpg()
+    }
+
+    function reloadpg() {
+        // forceUpdate()
+    }
 
     return (
         <div className="product-details">
@@ -44,7 +58,7 @@ const Showprod = (props) => {
                     </tr>
                 </tbody>
             </table>
-            <Navigation navi="products" current={product.id} />
+            <Navigation navi="products" current={product.id} right={nextprod} left={prevprod} />
         </div>
     );
 };

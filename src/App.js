@@ -1,15 +1,19 @@
-import './App.css';
+import './styles/App.css';
+import './styles/home.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Common/Header';
+import Header2 from './components/Common/Header2';
+import Header1 from './components/Common/Header1';
 import Footer from './components/Common/Footer';
 import Page from './components/Pages/Blogs/page';
 import Empty from './components/Common/Empty';
 import Products from './components/Pages/Home/Products/products';
-import './components/Pages/Home/home.css';
+import './output.css'
+
 function App() {
   return (
     <div className='App'>
-      <Header />
+      <Header1 />
+      <Header2 />
       <main>
         <BrowserRouter>
           <Routes>
@@ -21,7 +25,9 @@ function App() {
         </BrowserRouter>
 
       </main>
+      <br></br>
       <Footer />
+
     </div>
   );
 }

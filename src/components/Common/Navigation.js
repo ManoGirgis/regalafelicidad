@@ -1,21 +1,23 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import WoocommerceConnection from '../../../src/connections/woocommerce';
-import { useState } from 'react';
 
 const Navigation = (props) => {
+    // console.log('Navigation props:', props);
     const { data: item, loading, error } = WoocommerceConnection(props.navi);
-    const [current, setCurrent] = useState(item)
-    const [next, setNext] = useState();
-    const [prev, setPrev] = useState();
+    // console.log(WoocommerceConnection(props.navi));
+    const [next, setNext] = useState(null);
+    const [prev, setPrev] = useState(null);
+
     useEffect(() => {
-        console.log(item);
         if (item && item.length > 0) {
             for (let i = 0; i < item.length; i++) {
-                if (item[i].id === props.id) {
+                // console.log("holaqqqqqqqqqqqqqqqsssssss")
+                // console.log(item[i].id == props.current)
+                // console.log(item[i].id + " -- " + props.current)
+                if (item[i].id == props.current) {
                     if (i + 1 < item.length) {
                         setNext(item[i + 1]);
-                        console.log(next);
                     } else {
                         setNext(null);
                     }
@@ -24,20 +26,44 @@ const Navigation = (props) => {
                     } else {
                         setPrev(null);
                     }
+                    break;
                 }
             }
         }
-    }, [current])
+    }, [item, props.id]);
 
-    if (loading) { return <div>Cargando...</div>; }
-    if (error) { alert("Error: " + `${error.message}`); }
+    useEffect(() => {
+        console.log('Next item:', next);
+        console.log('Previous item:', prev);
+    }, [next, prev]);
+
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+    // const toprev = () => {
+    //     this.props.prev(prev.id);
+    // }
+    // const tonext = () => {
+    //     this.props.next(next.id);
+    // }
+
     return (
         <div className="button-aligner">
-            <a><FaArrowLeft /> {/* {prev.name}*/}</a>
-            <a> {/* {next.name} */}<FaArrowRight /></a>
+            {prev && (
+                <div onClick={() => props.left(prev.id)} className="toPrev">
+                    <FaArrowLeft /> {prev.name}
+                </div>
+            )}
+            {next && (
+                <div onClick={() => props.right(next.id)} className="toNext">
+                    <FaArrowRight />{next.name}
+                </div>
+            )}
         </div>
-    )
+    );
 }
 
-
-export default Navigation
+export default Navigation;

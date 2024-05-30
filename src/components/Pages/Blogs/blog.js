@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Post from './post';
 import Comment from '../Home/Comment/Comment';
-import './blogs.css';
+import './../../../styles/blogs.css'
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);

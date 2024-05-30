@@ -3,15 +3,15 @@ import Card from '../../../Common/Card';
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import Showprod from './showprod';
 import prodimg from '../../../../Images/prodimg.png';
+import { FaCartPlus } from "react-icons/fa";
 
 let x = 0;
 const Products = () => {
-    // Utiliza el hook de tu conexión personalizada
+
     const { data: products, loading, error } = WoocommerceConnection('products');
-    const [selectedProdId, setSelectedProdId] = useState(null);
+    const [selectedProdId, setSelectedProdId] = useState();
     const [imagen, setimagen] = useState(prodimg);
-    // Si deseas cargar los productos solo una vez al montar el componente, puedes usar useEffect
-    // con un array de dependencias vacío.
+
     useEffect(() => {
         // if (product.images[0].src) {
         //     console.log(product.images[0]);
@@ -19,7 +19,6 @@ const Products = () => {
         // }
     }, [x]);
 
-    // Maneja el estado de carga y errores
     if (loading) {
         return <div>Cargando...</div>;
     }
@@ -50,8 +49,9 @@ const Products = () => {
                             image={prodimg}
                             item="Product"
                             click={setprod}
-
-                        />
+                        >
+                            <FaCartPlus />
+                        </Card>
 
                     ))}
                 </div>

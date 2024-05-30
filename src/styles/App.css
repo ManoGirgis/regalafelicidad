@@ -1,20 +1,19 @@
 body {
-  background-color: wheat;
+  background-color: white;
 }
 
-.App-header {
-  background-color: rgb(240, 240, 240, 0.8);
-  min-height: 4rem;
+.App-header2 {
+  background-color: #084d86;
+  min-height: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-header ul li a {
-  color: black;
+.App-header2 ul li a {
+  color: white;
 }
 
 .header-navigators {
@@ -22,6 +21,50 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
+}
+
+.header-grouper {
+  display: flex;
+  margin-right: 25lpx;
+}
+
+.main-header-navigators {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-item {
+  margin-right: 20px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+.main-header-navigators li a img {
+
+  width: 10rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.main-header-navigators li:last-child {
+  margin-right: 0;
+}
+
+.main-header-navigators a {
+  text-decoration: none;
+  color: #333;
+  /* Change color as needed */
+}
+
+.main-header-navigators a:hover {
+  text-decoration: underline;
 }
 
 .header-navigators li {
@@ -40,6 +83,16 @@ body {
 
 .header-navigators a:hover {
   text-decoration: underline;
+}
+
+footer {
+  width: 100%;
+  height: 20%;
+  position: fixed bottom 0;
+  left: 0;
+  background-color: #084d86;
+  color: #ffffff;
+  text-align: center
 }
 
 .card-container {
@@ -65,8 +118,8 @@ body {
 }
 
 .card-container h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 24px, 20px;
+  margin-bottom: 5px;
   display: contents;
 }
 
@@ -111,19 +164,33 @@ body {
 }
 
 .button-aligner {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-
-
+  /* display: flex; */
 }
 
-.button-aligner a:hover {
+.toNext {
+  float: right;
+  margin-left: 29%;
+}
+
+.toPrev {
+  float: left;
+  margin-right: 29%;
+}
+
+.clear {
+  float: center;
+}
+
+.toNext:hover,
+.toPrev:hover {
   /* background-color: #282c34; */
   color: rgba(13, 13, 172, 0.87);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+#card-button button {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 a:link {
