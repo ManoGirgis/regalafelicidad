@@ -6,16 +6,29 @@ import Navigation from "../../../Common/Navigation";
 const Showprod = (props) => {
     const [productId, setProductId] = useState(props.id);
     const [imagen, setimagen] = useState(prodimg);
-    let thing = `products/${productId}`;
-    const { data: product, loading, error } = WoocommerceConnection(thing);
+    // let thing = `products/${productId}`;
+    const { data: products, loading, error } = WoocommerceConnection("products");
+    const [product, setproduct] = useState({});
+    console.log(products)
     useEffect(() => {
+        console.log(products)
         // if (product.images[0].src) {
         //     console.log(product.images[0]);
         //     setimagen(product.images[0]);
         // }
-
-
-    }, [productId]);
+        //ss
+        if (products && products.length > 0) {
+            for (let i = 0; i < products.length; i++) {
+                if (products[i].id == productId) {
+                    setproduct(products[i]);
+                    console.log(products)
+                    //    if(products[i].images[0].src){
+                    //        setimagen(products[i].images[0].src);
+                    //    }
+                }
+            }
+        }
+    }, []);
     if (loading) { return <div>Cargando...</div>; }
     if (error) { return <div>Error: {error.message}</div>; }
 

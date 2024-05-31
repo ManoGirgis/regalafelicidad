@@ -53,10 +53,11 @@ const Blog = () => {
                 </>
             ) : (
                 posts.map(post => (
-                    <div key={post.id} className='container-blog'>
-                        <span className='info-blog'>Publicado en <u>{formatDate(post.date)}</u> por <b>{authors[post.author]?.name}</b></span>
-                        <h1 onClick={() => setSelectedPostId(post.id)} className='header-blog'>{post.title.rendered}  {post.id}</h1>
+                    <div key={post.id} onClick={() => setSelectedPostId(post.id)} className='container-blog'>
+                        <h1 className='header-blog'>{post.title.rendered}</h1>
+                        <span className='info-blog'>{formatDate(post.date)} por {authors[post.author]?.name}</span>
                         <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                        <hr></hr>
                     </div>
                 ))
             )}

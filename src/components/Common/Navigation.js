@@ -13,8 +13,8 @@ const Navigation = (props) => {
         if (item && item.length > 0) {
             for (let i = 0; i < item.length; i++) {
                 // console.log("holaqqqqqqqqqqqqqqqsssssss")
-                // console.log(item[i].id == props.current)
-                // console.log(item[i].id + " -- " + props.current)
+                console.log(item[i].id == props.current)
+                console.log(item[i].id + " -- " + props.current)
                 if (item[i].id == props.current) {
                     if (i + 1 < item.length) {
                         setNext(item[i + 1]);
@@ -30,7 +30,7 @@ const Navigation = (props) => {
                 }
             }
         }
-    }, [item, props.id]);
+    }, [props.id]);
 
     useEffect(() => {
         console.log('Next item:', next);
@@ -43,22 +43,23 @@ const Navigation = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    // const toprev = () => {
-    //     this.props.prev(prev.id);
-    // }
-    // const tonext = () => {
-    //     this.props.next(next.id);
-    // }
+
+    const toprev = () => {
+        this.props.prev(prev.id);
+    }
+    const tonext = () => {
+        this.props.next(next.id);
+    }
 
     return (
         <div className="button-aligner">
             {prev && (
-                <div onClick={() => props.left(prev.id)} className="toPrev">
+                <div onClick={toprev} className="toPrev">
                     <FaArrowLeft /> {prev.name}
                 </div>
             )}
             {next && (
-                <div onClick={() => props.right(next.id)} className="toNext">
+                <div onClick={tonext} className="toNext">
                     <FaArrowRight />{next.name}
                 </div>
             )}

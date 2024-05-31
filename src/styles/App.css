@@ -38,6 +38,8 @@ body {
   justify-content: space-between;
 }
 
+.user-head {}
+
 .nav-item {
   margin-right: 20px;
   margin-left: 20px;
