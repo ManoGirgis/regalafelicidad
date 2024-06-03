@@ -7,6 +7,7 @@ import Footer from './components/Common/Footer';
 import Page from './components/Pages/Blogs/page';
 import Empty from './components/Common/Empty';
 import Products from './components/Pages/Home/Products/products';
+import Error from './components/Common/Error';
 import './output.css'
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
             <Route path="/posts" element={<Page />} />
             <Route path="/prods" element={<Products />} />
             <Route path="/" element={<Empty />} />
-            <Route path="*" element={<Empty />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
 

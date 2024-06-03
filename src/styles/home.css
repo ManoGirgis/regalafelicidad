@@ -3,8 +3,8 @@
 }
 
 .product-details img {
-  max-width: 10rem;
-  max-height: 25rem;
+  max-width: 25rem;
+  max-height: 30rem;
   height: auto;
 }
 
@@ -28,4 +28,6 @@
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
+  max-height: 40rem;
+  max-width: 30rem;
 }

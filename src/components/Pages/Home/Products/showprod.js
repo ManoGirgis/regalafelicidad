@@ -56,23 +56,31 @@ const Showprod = (props) => {
                                 <img src={imagen} alt="product-default" />
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td>{product.name}</td>
-                    </tr>
-                    <tr>
-                        <td>Price:</td>
-                        <td>{product.price}</td>
-                    </tr>
-                    <tr>
-                        <td>Description:</td>
-                        <td dangerouslySetInnerHTML={{ __html: product.description }} />
+                        <td>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Name:</td>
+                                        <td>{product.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price:</td>
+                                        <td>{product.price}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description:</td>
+                                        <td dangerouslySetInnerHTML={{ __html: product.description }} />
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+
+
             <Navigation navi="products" current={product.id} right={nextprod} left={prevprod} />
-        </div>
+        </div >
     );
 };
 export default Showprod;
