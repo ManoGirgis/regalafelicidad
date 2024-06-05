@@ -5,58 +5,46 @@ import Navigation from "../../../Common/Navigation";
 
 const Showprod = (props) => {
     const [productId, setProductId] = useState(props.id);
-    const [imagen, setimagen] = useState(prodimg);
-    // let thing = `products/${productId}`;
+    const [imagen, setImagen] = useState(prodimg);
     const { data: products, loading, error } = WoocommerceConnection("products");
-    const [product, setproduct] = useState({});
-    console.log(products)
+    const [product, setProduct] = useState({});
+
     useEffect(() => {
-        console.log(products)
-        // if (product.images[0].src) {
-        //     console.log(product.images[0]);
-        //     setimagen(product.images[0]);
-        // }
-        //ss
         if (products && products.length > 0) {
-            for (let i = 0; i < products.length; i++) {
-                if (products[i].id == productId) {
-                    setproduct(products[i]);
-                    console.log(products)
-                    //    if(products[i].images[0].src){
-                    //        setimagen(products[i].images[0].src);
-                    //    }
-                }
+            const foundProduct = products.find(p => p.id === productId);
+            if (foundProduct) {
+                setProduct(foundProduct);
+                // if (foundProduct.images && foundProduct.images.length > 0) {
+                //     setImagen(foundProduct.images[0].src);
+                // } else {
+                //     setImagen(prodimg);
+                // }
             }
         }
-    }, []);
+    }, [products, productId]);
+
     if (loading) { return <div>Cargando...</div>; }
     if (error) { return <div>Error: {error.message}</div>; }
 
-    const nextprod = (nextId) => {
+    const nextProd = (nextId) => {
         setProductId(nextId);
-        reloadpg()
-    }
-    const prevprod = (prevId) => {
-        console.log("prev", prevId);
-        setProductId(prevId);
-        reloadpg()
-    }
+    };
 
-    function reloadpg() {
-        // forceUpdate()
-    }
+    const prevProd = (prevId) => {
+        setProductId(prevId);
+    };
 
     return (
         <div className="product-details">
             <table>
                 <tbody>
                     <tr>
-                        <td colSpan="2">
+                        <td colSpan="2" className="tablecoulmnsleft">
                             <div className="product-img-container">
                                 <img src={imagen} alt="product-default" />
                             </div>
                         </td>
-                        <td>
+                        <td className="tablecoulmnsright">
                             <table>
                                 <tbody>
                                     <tr>
@@ -79,7 +67,7 @@ const Showprod = (props) => {
             </table>
 
 
-            <Navigation navi="products" current={product.id} right={nextprod} left={prevprod} />
+            <Navigation navi="products" current={product.id} right={nextProd} left={prevProd} />
         </div >
     );
 };

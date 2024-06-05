@@ -1,14 +1,19 @@
 import './styles/App.css';
 import './styles/home.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './output.css'
+
 import Header2 from './components/Common/Header2';
 import Header1 from './components/Common/Header1';
 import Footer from './components/Common/Footer';
-import Page from './components/Pages/Blogs/page';
-import Empty from './components/Common/Empty';
-import Products from './components/Pages/Home/Products/products';
-import Error from './components/Common/Error';
-import './output.css'
+import Routing from './components/Routes/Routing';
+import CopyRights from './components/Common/CopyRights';
+
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import Empty from './components/Common/Empty';
+// import Page from './components/Pages/Blogs/page';
+// import Products from './components/Pages/Home/Products/products';
+// import Error from './components/Common/Error';
+
 
 function App() {
   return (
@@ -16,18 +21,13 @@ function App() {
       <Header1 />
       <Header2 />
       <main>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/posts" element={<Page />} />
-            <Route path="/prods" element={<Products />} />
-            <Route path="/" element={<Empty />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </BrowserRouter>
+        <Routing />
+
 
       </main>
       <br></br>
       <Footer />
+      <CopyRights />
 
     </div>
   );

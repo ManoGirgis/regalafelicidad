@@ -5,7 +5,6 @@ import Showprod from './showprod';
 import prodimg from '../../../../Images/prodimg.png';
 import { FaCartPlus } from "react-icons/fa";
 
-let x = 0;
 const Products = () => {
 
     const { data: products, loading, error } = WoocommerceConnection('products');
@@ -17,7 +16,9 @@ const Products = () => {
         //     console.log(product.images[0]);
         //     setimagen(product.images[0]);
         // }
-    }, [x]);
+
+
+    }, []);
 
     if (loading) {
         return <div>Cargando...</div>;
@@ -28,7 +29,6 @@ const Products = () => {
     }
     const setprod = (id) => {
         setSelectedProdId(id);
-        x++;
     }
 
     return (
@@ -48,6 +48,7 @@ const Products = () => {
                                     title={product.name}
                                     button="Add to cart"
                                     text={product.price}
+                                    unit="Euros"
                                     image={prodimg}
                                     imageAlt="Product-image"
                                     item="Product"

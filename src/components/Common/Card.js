@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FaEye } from "react-icons/fa";
-import { FaCartPlus } from "react-icons/fa";
+
+// import { FaEye } from "react-icons/fa";
+// import { FaCartPlus } from "react-icons/fa";
 
 // export class Card extends Component {
 //     constructor(props) {
@@ -35,7 +36,7 @@ export default function Card(props) {
                 />
             </div>
             <h3 className="mt-4 text-sm text-gray-700">{props.title}</h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">{props.text}</p>
+            <p className="mt-1 text-lg font-medium text-gray-900">{props.text} {props.unit}</p>
         </a>
     )
 }

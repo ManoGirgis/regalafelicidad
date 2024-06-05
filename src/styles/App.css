@@ -92,9 +92,37 @@ footer {
   height: 20%;
   position: fixed bottom 0;
   left: 0;
+
+  text-align: center
+}
+
+.info-footer {
   background-color: #084d86;
   color: #ffffff;
-  text-align: center
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.colhead {
+  color: #fed500;
+  font-size: x-large;
+  font-style: Bold;
+}
+
+.footer-columns a:hover {
+  font-style: underline;
+  color: #fed500 !important;
+}
+
+.copyrights {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.copyrights img {
+  max-width: 20rem;
+  max-height: 3rem;
 }
 
 .card-container {
