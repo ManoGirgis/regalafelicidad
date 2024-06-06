@@ -1,12 +1,13 @@
 import './styles/App.css';
 import './styles/home.css';
 import './output.css'
+import './styles/Auth.css'
 
-import Header2 from './components/Common/Header2';
-import Header1 from './components/Common/Header1';
-import Footer from './components/Common/Footer';
+import Header2 from './components/Common/Headers/Header2';
+import Header1 from './components/Common/Headers/Header1';
+import Footer from './components/Common/Footers/Footer';
 import Routing from './components/Routes/Routing';
-import CopyRights from './components/Common/CopyRights';
+import CopyRights from './components/Common/Footers/CopyRights';
 
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Empty from './components/Common/Empty';

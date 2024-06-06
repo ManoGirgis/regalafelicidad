@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import WoocommerceConnection from '../../../src/connections/woocommerce';
+import WoocommerceConnection from '../../../connections/woocommerce';
 
 const Navigation = (props) => {
     const { data: item, loading, error } = WoocommerceConnection(props.navi);

@@ -145,10 +145,23 @@
 
 /*************************************************************************************************/
 /* Preguntas Frecuentes design*/
-.custom-collapse .ant-collapse-header,
-.custom-collapse .ant-collapse-content,
-.custom-collapse .ant-collapse-content-box {
-  /* background-color: #f80606 !important; */
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header {
+  background-color: white !important;
+}
+
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header span,
+.ant-collapse-item.ant-collapse-item-active .ant-collapse-header div {
+  color: black !important;
+}
+
+.ant-collapse-item .ant-collapse-header {
+  background-color: #084d86 !important;
+  color: white;
+}
+
+.ant-collapse-item .ant-collapse-header span,
+.ant-collapse-item .ant-collapse-header div {
+  color: white;
 }
 
 .Preguntas-main-container {
@@ -171,7 +184,7 @@
 
 .Preguntas-main-container div {
 
-  background-color: #f5deb3;
+  /* background-color: #f5deb3; */
   padding-left: 1rem;
   /* color: white */
 }
@@ -182,7 +195,6 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 1.4;
-  color: #084d86;
 }
 
 .Preguntas-main-container h2 {

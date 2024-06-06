@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../../../Common/Card';
+import Card from '../../../Common/Reusables/Card';
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import Showprod from './showprod';
 import prodimg from '../../../../Images/prodimg.png';

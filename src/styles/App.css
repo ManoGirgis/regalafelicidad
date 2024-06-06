@@ -1,5 +1,6 @@
 body {
   background-color: white;
+  font-family: Nunito;
 }
 
 .App-header2 {
@@ -126,28 +127,29 @@ footer {
 }
 
 .card-container {
-  display: flex;
+  /* display: flex;
   margin: 1rem;
   padding: 1rem;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-  /* width: 25%; */
-  height: 400px;
+  align-content: center; */
+  /* width: 25%;
+  height: 400px; */
   /* background-color: rgba(255, 255, 255, 0.8); */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+
   padding: 20px;
   margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   transition: box-shadow 0.3s ease;
-  justify-content: space-between;
+  border: #282c34 1px solid;
 }
 
 .card-container:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card-container h1 {
+/* .card-container h1 {
   font-size: 24px, 20px;
   margin-bottom: 5px;
   display: contents;
@@ -161,11 +163,14 @@ footer {
 .card-container table {
   width: 100%;
   margin-top: 10px;
-}
+} */
+
+/* .card-container img {
+  max-width: 90%;
+  max-height: 70%;
+} */
 
 .card-container button {
-  padding: 10px 15px;
-  border: none;
   background-color: #282c34;
   color: white;
   border-radius: 5px;
@@ -175,11 +180,6 @@ footer {
 
 .card-container button:hover {
   background-color: #282c34;
-}
-
-.card-container img {
-  max-width: 90%;
-  max-height: 70%;
 }
 
 .card-place-holder {

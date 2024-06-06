@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import logo from './../../Images/logo.png';
-import defuser from './../../Images/defuser.png';
+import logo from './../../../Images/logo.png';
+import defuser from './../../../Images/defuser.png';
 import { CiUser } from "react-icons/ci";
 import {
     Disclosure,
@@ -121,10 +121,10 @@ export default function Header1() {
                                             <MenuItem>
                                                 {({ focus }) => (
                                                     <a
-                                                        href="#"
+                                                        href="/login"
                                                         className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Sign out
+                                                        Login
                                                     </a>
                                                 )}
                                             </MenuItem>

@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './../../Images/logo.png';
-import KidsClusterSinTexto from './../../Images/aboutus/KidsClusterSinTexto.webp';
+import logo from './../../../Images/logo.png';
+import KidsClusterSinTexto from './../../../Images/aboutus/KidsClusterSinTexto.webp';
 import { FaFacebook, FaYoutube, FaInstagramSquare } from "react-icons/fa";
 import { Row, Col } from "antd";
 

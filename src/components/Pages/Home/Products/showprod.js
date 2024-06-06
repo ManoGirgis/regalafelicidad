@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import prodimg from '../../../../Images/prodimg.png';
-import Navigation from "../../../Common/Navigation";
+import Navigation from "../../../Common/Reusables/Navigation";
 
 const Showprod = (props) => {
     const [productId, setProductId] = useState(props.id);
