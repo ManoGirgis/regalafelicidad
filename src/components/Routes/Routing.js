@@ -6,7 +6,7 @@ import Error from './../Common/Empty';
 import Aboutus from '../Pages/Informations/aboutus';
 import Preguntasfreq from '../Pages/Informations/preguntasfreq';
 import Login from '../Pages/Login/Login'
-
+import Carrito from '../Pages/Carrito/Carrito'
 
 import React, { Component } from 'react'
 
@@ -22,6 +22,7 @@ class Routing extends Component {
                     <Route path="/aboutus" element={<Aboutus />} />
                     <Route path="/preguntas" element={<Preguntasfreq />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/cart" element={<Carrito />} />
                 </Routes>
             </BrowserRouter>
         )

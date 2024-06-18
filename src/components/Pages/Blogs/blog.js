@@ -53,12 +53,14 @@ const Blog = () => {
                 </>
             ) : (
                 posts.map(post => (
-                    <div key={post.id} onClick={() => setSelectedPostId(post.id)} className='container-blog'>
-                        <h1 className='header-blog'>{post.title.rendered}</h1>
-                        <span className='info-blog'>{formatDate(post.date)} por {authors[post.author]?.name}</span>
-                        <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                        <hr></hr>
-                    </div>
+                    <a onClick={() => setSelectedPostId(post.id)}>
+                        <div key={post.id} onClick={() => setSelectedPostId(post.id)} className='container-blog'>
+                            <h1 className='header-blog'>{post.title.rendered}</h1>
+                            <span className='info-blog'>{formatDate(post.date)} por {authors[post.author]?.name}</span>
+                            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                            <hr></hr>
+                        </div>
+                    </a>
                 ))
             )}
         </div>

@@ -76,7 +76,7 @@ export default function Header1() {
                                     className="relative rounded-full bg-white-800 p-1 text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                 >
                                     <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">View notifications</span>
+                                    <span className="sr-only">Ver notificacions</span>
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
@@ -85,7 +85,7 @@ export default function Header1() {
                                     <div>
                                         <MenuButton className="relative flex rounded-full bg-white-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
-                                            <span className="sr-only">Open user menu</span>
+                                            <span className="sr-only">Abrir menu usuario</span>
                                             <CiUser className="h-8 w-8 rounded-full user-head" />
                                         </MenuButton>
                                     </div>
@@ -104,7 +104,7 @@ export default function Header1() {
                                                         href="#"
                                                         className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Your Profile
+                                                        Tu perfil
                                                     </a>
                                                 )}
                                             </MenuItem>
@@ -114,7 +114,7 @@ export default function Header1() {
                                                         href="#"
                                                         className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Settings
+                                                        Configuraciones
                                                     </a>
                                                 )}
                                             </MenuItem>
@@ -124,7 +124,7 @@ export default function Header1() {
                                                         href="/login"
                                                         className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
-                                                        Login
+                                                        Inicio de sesion
                                                     </a>
                                                 )}
                                             </MenuItem>

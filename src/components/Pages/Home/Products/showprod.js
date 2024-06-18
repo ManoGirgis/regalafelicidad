@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import prodimg from '../../../../Images/prodimg.png';
 import Navigation from "../../../Common/Reusables/Navigation";
+import AddCartbtn from '../../Carrito/AddCartbtn';
 
 const Showprod = (props) => {
     const [productId, setProductId] = useState(props.id);
@@ -48,19 +49,23 @@ const Showprod = (props) => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>Name:</td>
+                                        <td>Nombre:</td>
                                         <td>{product.name}</td>
                                     </tr>
                                     <tr>
-                                        <td>Price:</td>
+                                        <td>Pricio:</td>
                                         <td>{product.price}</td>
                                     </tr>
                                     <tr>
-                                        <td>Description:</td>
+                                        <td>Descripcion:</td>
                                         <td dangerouslySetInnerHTML={{ __html: product.description }} />
+                                    </tr>
+                                    <tr className="Show-buttons">
+
                                     </tr>
                                 </tbody>
                             </table>
+                            <AddCartbtn prod={product} />
                         </td>
                     </tr>
                 </tbody>

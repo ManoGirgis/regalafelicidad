@@ -1,6 +1,7 @@
 import './styles/App.css';
 import './styles/home.css';
 import './output.css'
+import './styles/Carrito.css';
 import './styles/Auth.css'
 
 import Header2 from './components/Common/Headers/Header2';

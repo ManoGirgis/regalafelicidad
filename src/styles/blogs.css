@@ -10,6 +10,30 @@
   color: #444;
 }
 
+.container-blog h1 {
+  color: #084d86;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+.container-blog p {
+  font-size: 19px;
+  line-height: 35px;
+
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  text-align: justify !important;
+
+  box-sizing: border-box;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
 .info-blog {
   display: block;
   margin-bottom: 0;
