@@ -4,23 +4,29 @@ import { Table, InputNumber, Typography, Popconfirm, Button } from 'antd';
 import { CiTrash, CiEdit } from "react-icons/ci";
 
 const Carrito = () => {
+
     const [cart, setCart] = useState(() => {
         let carrito = JSON.parse(localStorage.getItem('Product'));
         return Array.isArray(carrito) ? carrito : [];
     });
 
     const redirectToCheckout = (prodID, quant) => {
-        const cartUrl =
-            `https://regalafelicidad.com/rfs/cart/?add-to-cart=${prodID}&quantity=${quant}`;
+        //  const cartUrl = `https://regalafelicidad.com/rfs/cart/?add-to-cart=${prodID}&quantity=${quant}`;
+        const cartUrl = `https://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=${prodID}&quantity=${quant}`;
         window.location.href = cartUrl;
     };
 
     const redirectToCheckoutAll = (cart) => {
-        // let cartUrl = 'https://regalafelicidad.com/rfs/cart/';
-        let cartUrl = 'http://localhost:8080/wordpress/cart/';
+        //  let cartUrl = 'https://regalafelicidad.com/rfs/cart/';
+        // let cartUrl = 'https://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=';
+        // const separator = index === 0 ? '' : '&';
+        // cartUrl += `${separator} quantity[${product.quantity}]=${product.id}`;
+
+        let cartUrl = 'http://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=';
         cart.forEach((product, index) => {
-            const separator = index === 0 ? '?' : '&';
-            cartUrl += `${separator}add-to-cart=${product.id}&quantity=${product.quantity}`;
+
+            const separator = index === 0 ? '' : ',';
+            cartUrl += `${separator} ${product.id}`;
         });
         window.location.href = cartUrl;
     };
@@ -84,7 +90,7 @@ const Carrito = () => {
             title: 'Acciones',
             dataIndex: 'actions',
             render: (_, record) => (
-                <Typography.Link>
+                <div style={{ display: 'flex', gap: '10px' }}>
                     <Popconfirm
                         title="Are you sure you want to delete this item?"
                         onConfirm={() => handleDelete(record.id)}
@@ -94,7 +100,7 @@ const Carrito = () => {
                         <Button type="link" icon={<CiTrash />} />
                     </Popconfirm>
                     <Button onClick={() => redirectToCheckout(record.id, record.quantity)} type="link" icon={<CiEdit />} />
-                </Typography.Link>
+                </div>
             ),
         },
     ];
