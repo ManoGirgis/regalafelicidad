@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from './../../../Images/logo.png';
+import logo from './../../../Images/logo-large.png';
 import KidsClusterSinTexto from './../../../Images/aboutus/KidsClusterSinTexto.webp';
-import { FaFacebook, FaYoutube, FaInstagramSquare } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaInstagram } from "react-icons/fa";
 import { Row, Col } from "antd";
 
 const CopyRights = () => {
     return (
         <footer className='copyrights'>
             <img src={logo} alt="logo" />
-            <FaFacebook />
-            <FaInstagramSquare />
-            <FaYoutube />
-            <table>
+            <FaFacebook className='Facebook' />
+            <FaInstagram className="Insta" />
+            <FaYoutube className='Youtube' />
+            <table className='footertable'>
                 <tr>
                     <td>
                         <p> Formamos parte de:</p>

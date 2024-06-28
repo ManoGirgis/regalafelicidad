@@ -3,10 +3,19 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 
 const Header2 = () => {
     const [carrito, setCarrito] = useState(0)
+    const [price, setPrice] = useState(0.00.toFixed(2))
     const count = JSON.parse(localStorage.getItem('Product')).length
+
+
     useEffect(() => {
         setCarrito(count)
-    }, [count])
+        let total = 0
+        let cart = JSON.parse(localStorage.getItem('Product'))
+        cart.forEach(product => {
+            total += product.price * product.quantity
+        });
+        setPrice(total.toFixed(2))
+    }, [carrito])
 
 
     return (
@@ -19,8 +28,10 @@ const Header2 = () => {
                 </ul>
                 <ul></ul>
                 <ul className='header-navigators'>
-                    <li></li>
-                    <li><a href="/cart" className="button-with-circle"><MdOutlineShoppingBag /></a></li><span className="small-circle">{carrito}</span>
+                    <li>{price} €</li>
+                    <div className='cart-buttom'>
+                        <li className='circle-button-Container'><a href="/cart" className="button-with-circle"><MdOutlineShoppingBag /></a></li><span className="small-circle">{carrito}</span>
+                    </div>
                 </ul>
             </nav>
         </header>

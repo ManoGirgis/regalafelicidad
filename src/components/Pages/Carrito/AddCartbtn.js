@@ -35,25 +35,28 @@ const AddCartbtn = (props) => {
     }
 
     return (
-        <table className='buy-cart'>
-            <tr>
-                <td>
-                    <label for="Quantity">Cantidad: </label>
-                    <InputNumber
-                        id='Quantity'
-                        name="Quantity"
-                        keyboard
-                        size='small'
-                        min={1} max={100}
-                        defaultValue={1}
-                        onChange={value => setQuantity(value)}
-                    />
-                </td>
-                <td>
-                    <button onClick={ToCart} className="centered-icon-button"><FaCartPlus /> Añadir al carrito</button>
-                </td>
-            </tr>
-        </table>
+        <>
+            <div className='buy-cart'>
+                {/* <tr>
+                    <td> */}
+
+                <label for="Quantity">Cantidad: </label>
+                <InputNumber
+                    id='Quantity'
+                    name="Quantity"
+                    keyboard
+                    size='small'
+                    min={1} max={100}
+                    defaultValue={1}
+                    onChange={value => setQuantity(value)}
+                />
+                {/* </td>
+                    <td> */}
+                <button onClick={ToCart} className="centered-icon-button"><FaCartPlus /> Añadir al carrito</button>
+                {/* </td>
+                </tr> */}
+            </div>
+        </>
     );
 }
 

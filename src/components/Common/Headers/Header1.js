@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
-import logo from './../../../Images/logo.png';
-import defuser from './../../../Images/defuser.png';
+import React from 'react';
+import { Button, Input, Space } from 'antd';
 import { CiUser } from "react-icons/ci";
 import {
     Disclosure,
@@ -11,30 +10,25 @@ import {
     MenuItem,
     MenuItems,
     Transition,
-} from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+} from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
-]
+const { Search } = Input;
 
 function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
-export default function Header1() {
+const Header1 = () => {
     return (
-        <Disclosure as="nav" className="bg-white-800">
+        <Disclosure as="nav" className="bg-white-800 hedBG">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white-700 hover:text-gray focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
@@ -48,25 +42,17 @@ export default function Header1() {
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
                                         className="h-8 w-auto"
-                                        src={logo}
                                         alt="Your Company"
+                                        id="logo"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
-                                        {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-white-900 text-black hover:bg-gray-700 hover:text-white' : 'text-black-300 hover:bg-gray-700 hover:text-white',
-                                                    'rounded-md px-3 py-2 text-sm font-medium'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
+                                        <Space.Compact>
+                                            <Search placeholder="Buscar" className={classNames('text-black-300 hover:bg-white-700 hover:text-white',
+                                                'rounded-md px-3 py-2 text-sm font-medium w-full'
+                                            )} />
+                                        </Space.Compact>
                                     </div>
                                 </div>
                             </div>
@@ -99,30 +85,30 @@ export default function Header1() {
                                     >
                                         <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <MenuItem>
-                                                {({ focus }) => (
+                                                {({ active }) => (
                                                     <a
                                                         href="#"
-                                                        className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                        className={classNames(active ? 'bg-white-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Tu perfil
                                                     </a>
                                                 )}
                                             </MenuItem>
                                             <MenuItem>
-                                                {({ focus }) => (
+                                                {({ active }) => (
                                                     <a
                                                         href="#"
-                                                        className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                        className={classNames(active ? 'bg-white-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Configuraciones
                                                     </a>
                                                 )}
                                             </MenuItem>
                                             <MenuItem>
-                                                {({ focus }) => (
+                                                {({ active }) => (
                                                     <a
                                                         href="/login"
-                                                        className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                        className={classNames(active ? 'bg-white-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Inicio de sesion
                                                     </a>
@@ -137,7 +123,13 @@ export default function Header1() {
 
                     <DisclosurePanel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
+                            <Space.Compact className="w-full">
+                                <Search placeholder="Buscar" className={classNames('text-black-300 hover:text-white',
+                                    'rounded-md px-3 py-2 text-sm font-medium w-20'
+                                )} />
+                            </Space.Compact>
+                            {/* Add navigation items if needed */}
+                            {/* {navigation.map((item) => (
                                 <DisclosureButton
                                     key={item.name}
                                     as="a"
@@ -150,7 +142,7 @@ export default function Header1() {
                                 >
                                     {item.name}
                                 </DisclosureButton>
-                            ))}
+                            ))} */}
                         </div>
                     </DisclosurePanel>
                 </>
@@ -159,28 +151,4 @@ export default function Header1() {
     )
 }
 
-
-
-
-
-// const Header1 = () => {
-//     return (
-//         // <header>
-//         //     <nav className='App-header1'>
-//         //         <ul className='main-header-navigators'>
-//         //             <li><a href="/"><img src={logo} /></a></li>
-//         //             <div className='header-grouper'>
-//         //                 <li className='nav-item'><a href="/posts">Posts</a></li>
-//         //                 <li className='nav-item'><a href="/prods">Products</a></li>
-//         //             </div>
-//         //             <div className='header-grouper'>
-//         //                 <li className='nav-item'><a href="/posts">Posts</a></li>
-//         //                 <li className='nav-item'><a href="/prods">Products</a></li>
-//         //             </div>
-//         //         </ul>
-//         //     </nav>
-//         // </header>
-//     );
-// }
-
-// export default Header1;
+export default Header1;

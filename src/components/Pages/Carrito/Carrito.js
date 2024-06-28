@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Total from './Total';
 import { Table, InputNumber, Typography, Popconfirm, Button } from 'antd';
 import { CiTrash, CiEdit } from "react-icons/ci";
-
+import { FaLock } from "react-icons/fa";
 const Carrito = () => {
 
     const [cart, setCart] = useState(() => {
@@ -17,7 +17,7 @@ const Carrito = () => {
     };
 
     const redirectToCheckoutAll = (cart) => {
-        //  let cartUrl = 'https://regalafelicidad.com/rfs/cart/';
+        // let cartUrl = 'https://regalafelicidad.com/rfs/cart/';
         // let cartUrl = 'https://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=';
         // const separator = index === 0 ? '' : '&';
         // cartUrl += `${separator} quantity[${product.quantity}]=${product.id}`;
@@ -27,6 +27,12 @@ const Carrito = () => {
 
             const separator = index === 0 ? '' : ',';
             cartUrl += `${separator} ${product.id}`;
+        });
+        cartUrl += `&quantities =`;
+        cart.forEach((product, index) => {
+
+            const separator = index === 0 ? '' : ',';
+            cartUrl += `${separator} ${product.quantity}`;
         });
         window.location.href = cartUrl;
     };
@@ -111,8 +117,8 @@ const Carrito = () => {
                 <>
                     <Table dataSource={dataSource} columns={columns} pagination={false} />
                     <Total subtotal={dataSource.reduce((total, product) => total + product.total, 0)} />
-                    <Button onClick={() => redirectToCheckoutAll(cart)} type="primary" style={{ marginTop: '20px' }}>
-                        Checkout All Items
+                    <Button onClick={() => redirectToCheckoutAll(cart)} type="primary" className='Finalcheck'>
+                        <FaLock />  Finalizar compra
                     </Button>
                 </>
             ) : (

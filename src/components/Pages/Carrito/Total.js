@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 
-export class Total extends Component {
+class Total extends Component {
     constructor(props) {
         super(props)
 
     }
     render() {
+        let Tax = this.props.subtotal * (21 / 100);
         return (
             <div className='Total-container'>
                 <table>
                     <tr>
                         <th>Total: </th>
-                        <th>{this.props.subtotal}</th>
+                        {/* <th>{this.props.subtotal.toFixed(2)}</th> */}
+                        <th>{(this.props.subtotal - Tax).toFixed(2)}</th>
                     </tr>
                     <tr>
                         <th>Tax: </th>
-                        <th>0.00</th>
+                        <th>{Tax.toFixed(2)}</th>
                     </tr>
                     <tr>
                         <th><hr></hr></th>
@@ -24,7 +26,8 @@ export class Total extends Component {
 
                     <tr>
                         <th>SubTotal: </th>
-                        <th>{this.props.subtotal}</th>
+                        {/* <th>{(this.props.subtotal + Tax).toFixed(2)}</th> */}
+                        <th>{(this.props.subtotal).toFixed(2)}</th>
                     </tr>
                 </table>
             </div>

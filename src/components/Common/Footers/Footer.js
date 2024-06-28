@@ -6,7 +6,8 @@ const Footer = () => {
         <footer className='info-footer'>
 
             <Row gutter={[40, 48]}>
-                <Col xs={{ span: 24 }} xl={{ span: 4 }} className='footer-columns'>
+                <Col xs={{ span: 0 }} lg={{ span: 2 }} />
+                <Col xs={{ span: 24 }} lg={{ span: 4 }} className='footer-columns'>
                     <div>
                         <h1 className='colhead'>¿NECESITAS AYUDA?</h1>
                         <a href='https://wa.me/+34640030604?text=Hola%20me%20gustar%C3%ADa%20hacer%20una%20consulta'>Envíanos un mensaje</a><br></br>
@@ -15,7 +16,7 @@ const Footer = () => {
                         <a href=''>ERegalo Conjunto</a>
                     </div>
                 </Col>
-                <Col xs={{ span: 24 }} xl={{ span: 4 }} className='footer-columns'>
+                <Col xs={{ span: 24 }} lg={{ span: 4 }} className='footer-columns'>
                     <div>
                         <h1 className='colhead'>EXPERIENCIAS</h1>
                         <a href=''>Creativo</a><br></br>
@@ -24,7 +25,7 @@ const Footer = () => {
                         <a href=''>Deportista</a>
                     </div>
                 </Col>
-                <Col xs={{ span: 24 }} xl={{ span: 4 }} className='footer-columns'>
+                <Col xs={{ span: 24 }} lg={{ span: 4 }} className='footer-columns'>
                     <div>
                         <h1 className='colhead'>EMPRESA</h1>
                         <a href='/aboutus'>Conócenos</a><br></br>
@@ -32,14 +33,14 @@ const Footer = () => {
                         <a href=''>Contacto</a>
                     </div>
                 </Col>
-                <Col xs={{ span: 24 }} xl={{ span: 4 }} className='footer-columns'>
+                <Col xs={{ span: 24 }} lg={{ span: 4 }} className='footer-columns'>
                     <div>
                         <h1 className='colhead'>PROFESIONALES</h1>
                         <a href=''>Hazte colaborador</a><br></br>
                         <a href=''>Espacio colaborador</a>
                     </div>
                 </Col>
-                <Col xs={{ span: 24 }} xl={{ span: 4 }} className='footer-columns'>
+                <Col xs={{ span: 24 }} lg={{ span: 4 }} className='footer-columns'>
                     <div>  <h1 className='colhead'>LEGAL</h1>
                         <a href=''>Condiciones generales</a><br></br>
                         <a href=''>Aviso legal</a><br></br>
@@ -47,6 +48,7 @@ const Footer = () => {
                         <a href=''>Política de cookies</a>
                     </div>
                 </Col>
+                <Col xs={{ span: 0 }} lg={{ span: 2 }} />
             </Row>
         </footer>
     );

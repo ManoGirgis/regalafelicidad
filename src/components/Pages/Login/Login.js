@@ -1,5 +1,5 @@
 import React, { useState, useAuth } from 'react';
-import logo from './../../../Images/logo.png';
+import logo from './../../../Images/logo-large.png';
 import AuthProvider from "./../../../Authentication/AuthProvider";
 import { request, gql } from 'graphql-request';
 

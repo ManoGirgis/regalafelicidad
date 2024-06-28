@@ -48,7 +48,8 @@ const Products = () => {
                                     button="Add to cart"
                                     text={product.price}
                                     unit="Euros"
-                                    image={prodimg}
+                                    image={product.images[0]?.src}
+                                    // image={prodimg}
                                     imageAlt="Product-image"
                                     item="Product"
                                     click={setprod}
