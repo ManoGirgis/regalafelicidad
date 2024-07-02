@@ -12,8 +12,9 @@ import {
     Transition,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import Buscar from './Search';
 
-const { Search } = Input;
+// const { Search } = Input;
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -47,13 +48,7 @@ const Header1 = () => {
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4">
-                                        <Space.Compact>
-                                            <Search placeholder="Buscar" className={classNames('text-black-300 hover:bg-white-700 hover:text-white',
-                                                'rounded-md px-3 py-2 text-sm font-medium w-full'
-                                            )} />
-                                        </Space.Compact>
-                                    </div>
+                                    <Buscar />
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -123,11 +118,13 @@ const Header1 = () => {
 
                     <DisclosurePanel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
-                            <Space.Compact className="w-full">
+                            {/* <Space.Compact className="w-full">
                                 <Search placeholder="Buscar" className={classNames('text-black-300 hover:text-white',
                                     'rounded-md px-3 py-2 text-sm font-medium w-20'
                                 )} />
-                            </Space.Compact>
+                            </Space.Compact> */}
+
+                            <Buscar />
                             {/* Add navigation items if needed */}
                             {/* {navigation.map((item) => (
                                 <DisclosureButton

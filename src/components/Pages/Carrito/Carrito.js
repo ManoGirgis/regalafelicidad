@@ -22,17 +22,17 @@ const Carrito = () => {
         // const separator = index === 0 ? '' : '&';
         // cartUrl += `${separator} quantity[${product.quantity}]=${product.id}`;
 
-        let cartUrl = 'http://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=';
+        let cartUrl = process.env.REACT_APP_WEBSITE_URL + '?add-to-cart=';
         cart.forEach((product, index) => {
 
             const separator = index === 0 ? '' : ',';
-            cartUrl += `${separator} ${product.id}`;
+            cartUrl += `${separator}${product.id}`;
         });
-        cartUrl += `&quantities =`;
+        cartUrl += `&quantities=`;
         cart.forEach((product, index) => {
 
             const separator = index === 0 ? '' : ',';
-            cartUrl += `${separator} ${product.quantity}`;
+            cartUrl += `${separator}${product.quantity}`;
         });
         window.location.href = cartUrl;
     };

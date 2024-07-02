@@ -15,7 +15,7 @@ const Header2 = () => {
             total += product.price * product.quantity
         });
         setPrice(total.toFixed(2))
-    }, [carrito])
+    }, [count])
 
 
     return (
