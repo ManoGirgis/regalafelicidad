@@ -31,7 +31,7 @@ const Header1 = () => {
                                 {/* Mobile menu button*/}
                                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white-700 hover:text-gray focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
-                                    <span className="sr-only">Open main menu</span>
+                                    {/* <span className="sr-only">Open main menu</span> */}
                                     {open ? (
                                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                                     ) : (
@@ -57,7 +57,7 @@ const Header1 = () => {
                                     className="relative rounded-full bg-white-800 p-1 text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                                 >
                                     <span className="absolute -inset-1.5" />
-                                    <span className="sr-only">Ver notificacions</span>
+                                    {/* <span className="sr-only">Ver notificacions</span> */}
                                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
@@ -66,7 +66,7 @@ const Header1 = () => {
                                     <div>
                                         <MenuButton className="relative flex rounded-full bg-white-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
-                                            <span className="sr-only">Abrir menu usuario</span>
+                                            {/* <span className="sr-only">Abrir menu usuario</span> */}
                                             <CiUser className="h-8 w-8 rounded-full user-head" />
                                         </MenuButton>
                                     </div>

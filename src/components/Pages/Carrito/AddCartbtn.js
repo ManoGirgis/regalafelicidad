@@ -25,12 +25,16 @@ const AddCartbtn = (props) => {
             cart.push(productToAdd);
         }
 
-        localStorage.setItem('Product', JSON.stringify(cart));
+
         console.log(JSON.parse(localStorage.getItem('Product')));
 
         Modal.success({
             title: 'Product Added',
             content: `${props.prod.name} has been added to your cart.`,
+            onOk: () => {
+                // Refrescar la página después de cerrar el modal
+                window.location.reload();
+            }
         });
     }
 

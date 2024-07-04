@@ -19,7 +19,7 @@ const Posts = () => {
         // };
 
         // fetchPosts();
-        WordpressConnection('posts')
+        setPosts(WordpressConnection('posts'));
         // const intervalId = setInterval(fetchPosts, 10000);
         const intervalId = setInterval(WordpressConnection, 10000);
 
