@@ -4,21 +4,27 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 const Header2 = () => {
     const [carrito, setCarrito] = useState(0)
     const [price, setPrice] = useState(0.00.toFixed(2))
+    let count = 0;
+    let isLocalStorage = false;
 
-    if (!localStorage.getItem('Product')) {
-        localStorage.setItem('Product', JSON.stringify([]))
+    try {
+        count = JSON.parse(localStorage.getItem('Product')).length;
+        isLocalStorage = true;
+    } catch (error) {
+        count = 0;
     }
-    const count = JSON.parse(localStorage.getItem('Product')).length
 
 
     useEffect(() => {
-        setCarrito(count)
-        let total = 0
-        let cart = JSON.parse(localStorage.getItem('Product'))
-        cart.forEach(product => {
-            total += product.price * product.quantity
-        });
-        setPrice(total.toFixed(2))
+        if (isLocalStorage) {
+            setCarrito(count)
+            let total = 0
+            let cart = JSON.parse(localStorage.getItem('Product'))
+            cart.forEach(product => {
+                total += product.price * product.quantity
+            });
+            setPrice(total.toFixed(2))
+        }
     }, [count])
 
 
