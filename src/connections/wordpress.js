@@ -15,7 +15,7 @@ const WordpressConnection = (required) => {
                     throw new Error("Wordpress API credentials not provided.");
                 }
 
-                const url = `${storeUrl}/wp-json/wc/v2/${required}?`;
+                const url = `${storeUrl}${required}?`;
                 const response = await axios.get(url);
                 setData(response.data);
                 setLoading(false);

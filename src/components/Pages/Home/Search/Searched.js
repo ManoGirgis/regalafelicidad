@@ -11,83 +11,96 @@ const useQuery = () => {
 const Searched = () => {
     const query = useQuery();
     const searchTerm = query.get('q');
-    const [results, setResults] = useState([]);
+    // const [results, setResults] = useState([]);
     const [selectedProdId, setSelectedProdId] = useState();
-    // const { data: products, loading, error } = WoocommerceConnection(`products?search=${searchTerm}`);
-    // const { data: posts, loadingwb, errorwb } = Wordpress(`search?posts=${searchTerm}`);
+    // const [authors, setAuthors] = useState({});
 
-    const { data: products, loading, error } = WoocommerceConnection(`products`);
-    const { data: posts, loadingwb, errorwb } = WordpressConnection('posts');
+    const { data: products, loading: loadingProducts, error: errorProducts } = WoocommerceConnection(`products`);
+    const { data: posts, loading: loadingPosts, error: errorPosts } = WordpressConnection('/posts');
 
     useEffect(() => {
-        //     if (products /*|| posts*/) {
-        //         setResults([...products/*, ...posts*/]);
-        //     }
-        //     console.log(results);
+        // const fetchAuthors = async (postList) => {
+        //     const authorIds = [...new Set(postList.map(post => post.author))];
+        //     const authorRequests = authorIds.map(id => WordpressConnection(`/users/${id}`));
+        //     const authorResponses = await Promise.all(authorRequests);
 
+        //     const authorsData = authorResponses.reduce((acc, res) => {
+        //         acc[res.data.id] = res.data;
+        //         return acc;
+        //     }, {});
 
-    }, [searchTerm]);
+        //     setAuthors(authorsData);
+        // };
 
-    if (loading || loadingwb) {
+        // if (posts) {
+        //     fetchAuthors(posts);
+        // }
+    }, [posts]);
+
+    if (loadingProducts || loadingPosts) {
         return <div>Loading...</div>;
     }
 
-    if (error || errorwb) {
-        return <div>Error: {error.message}</div>;
+    if (errorProducts || errorPosts) {
+        return <div>Error: {errorProducts ? errorProducts.message : errorPosts.message}</div>;
     }
 
-    const filteredprods = products.filter(product =>
+    const filteredProds = products.filter(product =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const filteredposts = posts.filter(post =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredPosts = posts.filter(post =>
+        post.title && post.title.rendered && post.title.rendered.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const setprod = (id) => {
         setSelectedProdId(id);
-    }
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <div>
             <h1>Search Results for: {searchTerm}</h1>
-            {filteredprods.length > 0 ? (
-                <>
-                    <div className="bg-white">
-                        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                            <h2 className="">Productos</h2>
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                                {filteredprods.map(product => (
-                                    <Card
-                                        onClick={() => setSelectedProdId(product.id)}
-                                        key={product.id}
-                                        id={product.id}
-                                        title={product.name}
-                                        button="Add to cart"
-                                        text={product.price}
-                                        unit="Euros"
-                                        image={product.images[0]?.src}
-                                        imageAlt="Product-image"
-                                        item="Product"
-                                        click={setprod}
-                                    >
-                                    </Card>
-
-                                ))}
-                            </div>
+            {filteredProds.length > 0 ? (
+                <div className="bg-white">
+                    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                        <h2 className="">Productos</h2>
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                            {filteredProds.map(product => (
+                                <Card
+                                    onClick={() => setSelectedProdId(product.id)}
+                                    key={product.id}
+                                    id={product.id}
+                                    title={product.name}
+                                    button="Add to cart"
+                                    text={product.price}
+                                    unit="Euros"
+                                    image={product.images[0]?.src}
+                                    imageAlt="Product-image"
+                                    item="Product"
+                                    click={setprod}
+                                />
+                            ))}
                         </div>
                     </div>
-                </>
-                // <li key={product.id}>
-                //     {product.name} - {product.price}
-                // </li>
+                </div>
             ) : (
                 <p>No hay Productos.</p>
             )}
-            {filteredposts.length > 0 ? (
+
+            {filteredPosts.length > 0 ? (
                 <ul>
-                    {filteredposts.map(post => (
-                        <li key={post.id}>{post.title}</li>
+                    {filteredPosts.map(post => (
+                        <div key={post.id} className='container-blog'>
+                            <h1 className='header-blog'>{post.title.rendered}</h1>
+                            <span className='info-blog'>{formatDate(post.date)} {/*por {authors[post.author]?.name*/}</span>
+                            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                            <hr></hr>
+                        </div>
                     ))}
                 </ul>
             ) : (
