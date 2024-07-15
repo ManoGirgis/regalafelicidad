@@ -4,19 +4,19 @@ import axios from "axios";
 const Comment = (props) => {
     const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const res = await axios.get(`${process.env.REACT_APP_WORDPRESS_API_URL}/comments?post=${props.id}`);
-                setComments(Array.isArray(res.data) ? res.data : []);
-            } catch (err) {
-                console.error('Error fetching comments:', err);
-                setComments([]);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchComments = async () => {
+    //         try {
+    //             const res = await axios.get(`${process.env.REACT_APP_WORDPRESS_API_URL}/comments?post=${props.id}`);
+    //             setComments(Array.isArray(res.data) ? res.data : []);
+    //         } catch (err) {
+    //             console.error('Error fetching comments:', err);
+    //             setComments([]);
+    //         }
+    //     };
 
-        fetchComments();
-    }, [props.id]);
+    //     fetchComments();
+    // }, [props.id]);
 
     return (
         <div>

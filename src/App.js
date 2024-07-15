@@ -9,6 +9,8 @@ import Header1 from './components/Common/Headers/Header1';
 import Footer from './components/Common/Footers/Footer';
 import Routing from './components/Routes/Routing';
 import CopyRights from './components/Common/Footers/CopyRights';
+import ApolloAppProvider from './providers/ApolloProvider';
+
 
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Empty from './components/Common/Empty';
@@ -20,17 +22,19 @@ import CopyRights from './components/Common/Footers/CopyRights';
 function App() {
   return (
     <div className='App'>
-      <Header1 />
-      <Header2 />
-      <main>
-        <Routing />
+      <ApolloAppProvider>
+        <Header1 />
+        <Header2 />
+        <main>
+          <Routing />
 
 
-      </main>
-      <br></br>
-      <Footer />
-      <CopyRights />
+        </main>
+        <br></br>
+        <Footer />
+        <CopyRights />
 
+      </ApolloAppProvider>
     </div>
   );
 }

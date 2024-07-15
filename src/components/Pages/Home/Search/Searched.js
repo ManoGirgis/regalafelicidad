@@ -3,6 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Card from '../../../Common/Reusables/Card';
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import WordpressConnection from '../../../../connections/wordpress';
+import './../../../../styles/searches.css';
+import logoSmall from './../../../../Images/logosmall.webp';
+import { Row, Col } from "antd";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -63,50 +66,78 @@ const Searched = () => {
     };
 
     return (
-        <div>
-            <h1>Search Results for: {searchTerm}</h1>
-            {filteredProds.length > 0 ? (
-                <div className="bg-white">
-                    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                        <h2 className="">Productos</h2>
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                            {filteredProds.map(product => (
-                                <Card
-                                    onClick={() => setSelectedProdId(product.id)}
-                                    key={product.id}
-                                    id={product.id}
-                                    title={product.name}
-                                    button="Add to cart"
-                                    text={product.price}
-                                    unit="Euros"
-                                    image={product.images[0]?.src}
-                                    imageAlt="Product-image"
-                                    item="Product"
-                                    click={setprod}
-                                />
-                            ))}
+
+        !filteredProds.length > 0 && !filteredPosts.length > 0 ? (
+            <div>
+                {/* <table className="Results-table">
+                    <tr>
+                        <td>  <img src={logoSmall}></img></td>
+                        <td>   <h1>Resulatados destacadas</h1></td>
+                    </tr>
+                </table> */}
+                <div className='No-results'>
+                    <h1>No se han encontrado resulatados que coincidan con tu selección: <b>{searchTerm}</b></h1>
+                </div>
+            </div>
+
+        ) : (
+
+
+
+
+
+
+            <div>
+                <h1>Search Results for: {searchTerm}</h1>
+                {filteredProds.length > 0 ? (
+                    <div className="bg-white">
+                        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                            <h2 className="">Productos</h2>
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                                {filteredProds.map(product => (
+                                    <Card
+                                        onClick={() => setSelectedProdId(product.id)}
+                                        key={product.id}
+                                        id={product.id}
+                                        title={product.name}
+                                        button="Add to cart"
+                                        text={product.price}
+                                        unit="Euros"
+                                        image={product.images[0]?.src}
+                                        imageAlt="Product-image"
+                                        item="Product"
+                                        click={setprod}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <p>No hay Productos.</p>
-            )}
-
-            {filteredPosts.length > 0 ? (
-                <ul>
-                    {filteredPosts.map(post => (
-                        <div key={post.id} className='container-blog'>
-                            <h1 className='header-blog'>{post.title.rendered}</h1>
-                            <span className='info-blog'>{formatDate(post.date)} {/*por {authors[post.author]?.name*/}</span>
-                            <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                            <hr></hr>
+                ) : (
+                    <h2>No hay Productos.</h2>
+                )}
+                <hr className='strong-separator'></hr>
+                {filteredPosts.length > 0 ? (
+                    <div className="bg-white">
+                        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                            <h2 className="">Productos</h2>
+                            {/* <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"> */}
+                            {filteredPosts.map(post => (
+                                <div key={post.id} className='container-blog'>
+                                    <h1 className='header-blog'>{post.title.rendered}</h1>
+                                    <span className='info-blog'>{formatDate(post.date)} {/*por {authors[post.author]?.name*/}</span>
+                                    <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                                    <hr></hr>
+                                </div>
+                            ))}
+                            {/* </div> */}
                         </div>
-                    ))}
-                </ul>
-            ) : (
-                <p>No hay posts.</p>
-            )}
-        </div>
+                    </div>
+                ) : (
+                    <h2>No hay posts.</h2>
+                )}
+            </div>)
+
+
     );
 };
 

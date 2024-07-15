@@ -400,3 +400,9 @@ a:link {
 a {
   color: black;
 }
+
+.strong-separator {
+  border: 1px solid grey;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
