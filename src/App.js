@@ -27,8 +27,6 @@ function App() {
         <Header2 />
         <main>
           <Routing />
-
-
         </main>
         <br></br>
         <Footer />

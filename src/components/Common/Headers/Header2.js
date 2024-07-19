@@ -35,7 +35,7 @@ const Header2 = () => {
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/posts">Entradas</a></li>
                     <li><a href="/prods">Productos</a></li>
-                    <li><a href="/users">Users</a></li>
+                    {/* <li><a href="/users">Users</a></li> */}
                 </ul>
                 <ul></ul>
                 <ul className='header-navigators'>
