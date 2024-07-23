@@ -72,41 +72,9 @@ const Blog = () => {
 
 
     const [selectedPostId, setSelectedPostId] = useState(null);
-    const { loading, error, data, fetchMore } = useQuery(Get_Posts);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
-    console.log(data);
-    const entradas = data.posts.edges.map(edge => edge.node);
+    const { loading, error, data } = useQuery(Get_Posts);
 
 
-    const handlePageChange = (page, pageSize) => {
-        setCurrentPage(page);
-        setPageSize(pageSize);
-
-        const endCursor = data.posts.pageInfo.endCursor;
-
-
-        fetchMore({
-            variables: {
-                first: pageSize,
-                after: endCursor,
-            },
-            updateQuery: (prevResult, { fetchMoreResult }) => {
-                if (!fetchMoreResult) return prevResult;
-
-                return {
-                    ...fetchMoreResult,
-                    posts: {
-                        ...fetchMoreResult.posts,
-                        edges: [
-                            ...prevResult.posts.edges,
-                            ...fetchMoreResult.posts.edges,
-                        ],
-                    },
-                };
-            },
-        });
-    };
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
@@ -116,41 +84,36 @@ const Blog = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Row gutter={[0, 0]} className='Blog'>
-            <Col lg={{ span: 19 }} xs={{ span: 24 }} className='blog-cols'>
-                <div>
-                    {data.posts.edges.map(post => (
-                        <a key={post.id} onClick={() => setSelectedPostId(post.id)} href={'/' + "posts/" + post.id} className='Blog-linker'>
-                            {post.featuredImage ?
-                                (
-                                    <img src={post.featuredImage.node.sourceUrl} alt="Post" />
-                                ) : (
-                                    <img src={Organizar_fiestas_infantiles_1} alt="Post" />
-                                )
-                            }
-                            <div className='container-blog'>
-                                <h1 className='header-blog'>{post.title}</h1>
-                                {/* <span className='info-blog'>{formatDate(post.date)} por {post.author.node.name}</span> */}
-                                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div>
+            <Row gutter={[0, 0]} className='Blog'>
+                <Col lg={{ span: 19 }} xs={{ span: 24 }} className='blog-cols'>
+                    <div>
+                        {data.posts.nodes.map(post => (
+                            <a key={post.id} onClick={() => setSelectedPostId(post.id)} href={'/' + "posts/" + post.id} className='Blog-linker'>
+                                {post.featuredImage ?
+                                    (
+                                        <img src={post.featuredImage.node.sourceUrl} alt="Post" />
+                                    ) : (
+                                        <img src={Organizar_fiestas_infantiles_1} alt="Post" />
+                                    )
+                                }
+                                <div className='container-blog'>
+                                    <h1 className='header-blog'>{post.title}</h1>
+                                    <span className='info-blog'>{formatDate(post.date)} por {post.author.node.name}</span>
+                                    <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
-                            </div>
-                            <hr></hr>
-                        </a>
-                    ))}
-                    <Pagination
-                        current={currentPage}
-                        pageSize={pageSize}
-                        total={data.posts.edges.length}
-                        onChange={handlePageChange}
-                        showSizeChanger
-                        onShowSizeChange={handlePageChange}
-                    />
-                </div>
-            </Col>
-            <Col lg={{ span: 1 }} xs={{ span: 0 }} ></Col>
-            <Col lg={{ span: 4 }} xs={{ span: 24 }} className='blog-cols'> <AsideMenu /></Col>
-        </Row>
-
+                                </div>
+                                <hr></hr>
+                            </a>
+                        ))}
+                        {/* )} */}
+                        <Pagination defaultCurrent={1} total={50} />
+                    </div>
+                </Col>
+                <Col lg={{ span: 1 }} xs={{ span: 0 }} ></Col>
+                <Col lg={{ span: 4 }} xs={{ span: 24 }} className='blog-cols'> <AsideMenu /></Col>
+            </Row>
+        </div>
     );
 };
 

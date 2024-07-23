@@ -28,7 +28,7 @@ class Routing extends Component {
                     <Route path="/login" element={<Login />} />
                     <Route path="/cart" element={<Carrito />} />
                     <Route path="/search" element={<Search />} />
-                    <Route path="/users" element={<ListUsers />} />
+                    {/* <Route path="/users" element={<ListUsers />} /> */}
 
 
                 </Routes>
