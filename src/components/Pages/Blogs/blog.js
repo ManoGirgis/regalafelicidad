@@ -8,12 +8,13 @@ import AsideMenu from './AsideMenu';
 
 const Blog = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(5);
 
     const { loading, error, data, fetchMore } = useQuery(Get_Posts, {
         variables: {
-            first: 5,
+            first: pageSize,
             after: null,
+            before: null,
         },
         notifyOnNetworkStatusChange: true,
     });
@@ -23,32 +24,53 @@ const Blog = () => {
 
     const posts = data.posts.edges.map(edge => edge.node);
 
-    const handlePageChange = (page, pageSize) => {
+    const handlePageChange = (page) => {
+        const isNextPage = page > currentPage;
         setCurrentPage(page);
 
-        const endCursor = data.posts.pageInfo.endCursor;
+        if (isNextPage) {
+            fetchMore({
+                variables: {
+                    first: pageSize,
+                    after: data.posts.pageInfo.endCursor,
+                },
+                updateQuery: (prevResult, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) return prevResult;
 
-        fetchMore({
-            variables: {
-                first: 5,
-                after: data.posts.pageInfo.endCursor,
-            },
-            updateQuery: (prevResult, { fetchMoreResult }) => {
-                if (!fetchMoreResult) return prevResult;
+                    return {
+                        ...fetchMoreResult,
+                        posts: {
+                            ...fetchMoreResult.posts,
+                            edges: [
+                                ...fetchMoreResult.posts.edges,
+                            ],
+                            pageInfo: fetchMoreResult.posts.pageInfo,
+                        },
+                    };
+                },
+            });
+        } else {
+            fetchMore({
+                variables: {
+                    first: pageSize,
+                    before: data.posts.pageInfo.startCursor,
+                },
+                updateQuery: (prevResult, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) return prevResult;
 
-                return {
-                    ...fetchMoreResult,
-                    posts: {
-                        ...fetchMoreResult.posts,
-                        edges: [
-                            ...prevResult.posts.edges,
-                            ...fetchMoreResult.posts.edges,
-                        ],
-                        pageInfo: fetchMoreResult.posts.pageInfo,
-                    },
-                };
-            },
-        });
+                    return {
+                        ...fetchMoreResult,
+                        posts: {
+                            ...fetchMoreResult.posts,
+                            edges: [
+                                ...fetchMoreResult.posts.edges,
+                            ],
+                            pageInfo: fetchMoreResult.posts.pageInfo,
+                        },
+                    };
+                },
+            });
+        }
     };
 
     const formatDate = (dateString) => {
@@ -84,7 +106,6 @@ const Blog = () => {
                         pageSize={pageSize}
                         total={data.posts.pageInfo.hasNextPage ? (currentPage + 1) * pageSize : currentPage * pageSize}
                         onChange={handlePageChange}
-
                     />
                 </div>
             </Col>

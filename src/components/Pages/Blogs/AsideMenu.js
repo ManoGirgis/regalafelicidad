@@ -4,17 +4,16 @@ import { Get_Posts } from './../../../connections/queries';
 
 const AsideMenu = () => {
     const [selectedPostId, setSelectedPostId] = useState(null);
-    const { loading, error, data } = useQuery(Get_Posts, {
+    const { loading, error, data: sidedata } = useQuery(Get_Posts, {
         variables: {
             first: 5,
-            after: null,
         },
     });
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const posts = data.posts.edges.map(edge => edge.node);
+    const posts = sidedata.posts.edges.map(edge => edge.node);
 
     return (
         <div className='asidemenu-blogs'>

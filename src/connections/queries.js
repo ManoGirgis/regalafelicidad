@@ -50,6 +50,7 @@ export const Get_Posts = gql`
       pageInfo {
         endCursor
         hasNextPage
+        startCursor
       }
     }
   }
