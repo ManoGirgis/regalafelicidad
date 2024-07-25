@@ -12,7 +12,6 @@ class Total extends Component {
                 <table>
                     <tr>
                         <th>Total: </th>
-                        {/* <th>{this.props.subtotal.toFixed(2)}</th> */}
                         <th>{(this.props.subtotal - Tax).toFixed(2)}</th>
                     </tr>
                     <tr>
@@ -26,7 +25,6 @@ class Total extends Component {
 
                     <tr>
                         <th>SubTotal: </th>
-                        {/* <th>{(this.props.subtotal + Tax).toFixed(2)}</th> */}
                         <th>{(this.props.subtotal).toFixed(2)}</th>
                     </tr>
                 </table>

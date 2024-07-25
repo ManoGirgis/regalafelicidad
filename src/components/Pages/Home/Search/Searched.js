@@ -4,8 +4,6 @@ import Card from '../../../Common/Reusables/Card';
 import WoocommerceConnection from '../../../../connections/woocommerce';
 import WordpressConnection from '../../../../connections/wordpress';
 import './../../../../styles/searches.css';
-import logoSmall from './../../../../Images/logosmall.webp';
-import { Row, Col } from "antd";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -14,31 +12,10 @@ const useQuery = () => {
 const Searched = () => {
     const query = useQuery();
     const searchTerm = query.get('q');
-    // const [results, setResults] = useState([]);
     const [selectedProdId, setSelectedProdId] = useState();
-    // const [authors, setAuthors] = useState({});
 
     const { data: products, loading: loadingProducts, error: errorProducts } = WoocommerceConnection(`products`);
     const { data: posts, loading: loadingPosts, error: errorPosts } = WordpressConnection('/posts');
-
-    useEffect(() => {
-        // const fetchAuthors = async (postList) => {
-        //     const authorIds = [...new Set(postList.map(post => post.author))];
-        //     const authorRequests = authorIds.map(id => WordpressConnection(`/users/${id}`));
-        //     const authorResponses = await Promise.all(authorRequests);
-
-        //     const authorsData = authorResponses.reduce((acc, res) => {
-        //         acc[res.data.id] = res.data;
-        //         return acc;
-        //     }, {});
-
-        //     setAuthors(authorsData);
-        // };
-
-        // if (posts) {
-        //     fetchAuthors(posts);
-        // }
-    }, [posts]);
 
     if (loadingProducts || loadingPosts) {
         return <div>Loading...</div>;
@@ -69,12 +46,6 @@ const Searched = () => {
 
         !filteredProds.length > 0 && !filteredPosts.length > 0 ? (
             <div>
-                {/* <table className="Results-table">
-                    <tr>
-                        <td>  <img src={logoSmall}></img></td>
-                        <td>   <h1>Resulatados destacadas</h1></td>
-                    </tr>
-                </table> */}
                 <div className='No-results'>
                     <h1>No se han encontrado resulatados que coincidan con tu selección: <b>{searchTerm}</b></h1>
                 </div>
@@ -120,16 +91,15 @@ const Searched = () => {
                     <div className="bg-white">
                         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                             <h2 className="">Productos</h2>
-                            {/* <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"> */}
+
                             {filteredPosts.map(post => (
                                 <div key={post.id} className='container-blog'>
                                     <h1 className='header-blog'>{post.title.rendered}</h1>
-                                    <span className='info-blog'>{formatDate(post.date)} {/*por {authors[post.author]?.name*/}</span>
+                                    <span className='info-blog'>{formatDate(post.date)}</span>
                                     <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                                     <hr></hr>
                                 </div>
                             ))}
-                            {/* </div> */}
                         </div>
                     </div>
                 ) : (

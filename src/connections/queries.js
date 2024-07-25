@@ -51,9 +51,20 @@ export const Get_Posts = gql`
         endCursor
         hasNextPage
         startCursor
+       
       }
     }
   }
+`;
+
+export const GET_POST_NUMBER = gql`
+query postsnum {
+  posts {
+    pageInfo {
+      total
+    }
+  }
+}
 `;
 
 export const Get_POST_BY_ID = gql

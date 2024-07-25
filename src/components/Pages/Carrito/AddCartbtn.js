@@ -32,7 +32,6 @@ const AddCartbtn = (props) => {
             title: 'Product Added',
             content: `${props.prod.name} has been added to your cart.`,
             onOk: () => {
-                // Refrescar la página después de cerrar el modal
                 window.location.reload();
             }
         });

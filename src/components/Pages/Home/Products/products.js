@@ -10,15 +10,6 @@ const Products = () => {
     const [selectedProdId, setSelectedProdId] = useState();
     const [imagen, setimagen] = useState(prodimg);
 
-    useEffect(() => {
-        // if (product.images[0].src) {
-        //     console.log(product.images[0]);
-        //     setimagen(product.images[0]);
-        // }
-
-
-    }, []);
-
     if (loading) {
         return <div>Cargando...</div>;
     }

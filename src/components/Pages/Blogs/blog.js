@@ -1,82 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Col, Row, Pagination } from "antd";
-import { Get_Posts } from './../../../connections/queries';
+import { Get_Posts, GET_POST_NUMBER } from './../../../connections/queries';
 import './../../../styles/blogs.css';
 import Organizar_fiestas_infantiles_1 from './../../../Images/Posts/Organizar-fiestas-infantiles-1.webp';
 import AsideMenu from './AsideMenu';
 
 const Blog = () => {
+    const [first] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
+    const [after, setAfter] = useState(null);
 
     const { loading, error, data, fetchMore } = useQuery(Get_Posts, {
-        variables: {
-            first: pageSize,
-            after: null,
-            before: null,
-        },
+        variables: { first, after },
         notifyOnNetworkStatusChange: true,
     });
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    const { loading: loadingPostNumber, error: errorPostNumber, data: postNumberData } = useQuery(GET_POST_NUMBER);
 
-    const posts = data.posts.edges.map(edge => edge.node);
+    useEffect(() => {
+        if (currentPage === 1) {
+            setAfter(null);
+        } else {
+            const fetchPageData = async () => {
+                const endCursor = await fetchEndCursor((currentPage - 1) * first);
+                setAfter(endCursor);
+            };
+            fetchPageData();
+        }
+    }, [currentPage]);
+
+    const fetchEndCursor = async (skip) => {
+        const result = await fetchMore({
+            variables: { first: skip, after: null },
+        });
+        return result.data.posts.pageInfo.endCursor;
+    };
 
     const handlePageChange = (page) => {
-        const isNextPage = page > currentPage;
         setCurrentPage(page);
-
-        if (isNextPage) {
-            fetchMore({
-                variables: {
-                    first: pageSize,
-                    after: data.posts.pageInfo.endCursor,
-                },
-                updateQuery: (prevResult, { fetchMoreResult }) => {
-                    if (!fetchMoreResult) return prevResult;
-
-                    return {
-                        ...fetchMoreResult,
-                        posts: {
-                            ...fetchMoreResult.posts,
-                            edges: [
-                                ...fetchMoreResult.posts.edges,
-                            ],
-                            pageInfo: fetchMoreResult.posts.pageInfo,
-                        },
-                    };
-                },
-            });
-        } else {
-            fetchMore({
-                variables: {
-                    first: pageSize,
-                    before: data.posts.pageInfo.startCursor,
-                },
-                updateQuery: (prevResult, { fetchMoreResult }) => {
-                    if (!fetchMoreResult) return prevResult;
-
-                    return {
-                        ...fetchMoreResult,
-                        posts: {
-                            ...fetchMoreResult.posts,
-                            edges: [
-                                ...fetchMoreResult.posts.edges,
-                            ],
-                            pageInfo: fetchMoreResult.posts.pageInfo,
-                        },
-                    };
-                },
-            });
-        }
     };
 
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
+
+    if (loading || loadingPostNumber) return <p>Loading...</p>;
+    if (error || errorPostNumber) return <p>Error: {error?.message || errorPostNumber?.message}</p>;
+
+    const posts = data?.posts?.edges?.map(edge => edge.node) || [];
+    const totalPosts = postNumberData?.posts?.pageInfo?.total || 0;
 
     return (
         <Row gutter={[0, 0]} className='Blog'>
@@ -103,9 +77,10 @@ const Blog = () => {
                     )}
                     <Pagination
                         current={currentPage}
-                        pageSize={pageSize}
-                        total={data.posts.pageInfo.hasNextPage ? (currentPage + 1) * pageSize : currentPage * pageSize}
+                        pageSize={first}
+                        total={totalPosts}
                         onChange={handlePageChange}
+                        align="center"
                     />
                 </div>
             </Col>

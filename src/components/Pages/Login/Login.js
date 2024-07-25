@@ -1,6 +1,5 @@
 import React, { useState, useAuth } from 'react';
 import logo from './../../../Images/logo-large.png';
-import AuthProvider from "./../../../Authentication/AuthProvider";
 import { request, gql } from 'graphql-request';
 
 const LOGIN_URL = 'https://regalafelicidad.com/rfs/graphql';

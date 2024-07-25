@@ -12,13 +12,6 @@ import CopyRights from './components/Common/Footers/CopyRights';
 import ApolloAppProvider from './providers/ApolloProvider';
 
 
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Empty from './components/Common/Empty';
-// import Page from './components/Pages/Blogs/page';
-// import Products from './components/Pages/Home/Products/products';
-// import Error from './components/Common/Error';
-
-
 function App() {
   return (
     <div className='App'>

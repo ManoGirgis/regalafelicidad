@@ -11,16 +11,11 @@ const Carrito = () => {
     });
 
     const redirectToCheckout = (prodID, quant) => {
-        //  const cartUrl = `https://regalafelicidad.com/rfs/cart/?add-to-cart=${prodID}&quantity=${quant}`;
         const cartUrl = `https://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=${prodID}&quantity=${quant}`;
         window.location.href = cartUrl;
     };
 
     const redirectToCheckoutAll = (cart) => {
-        // let cartUrl = 'https://regalafelicidad.com/rfs/cart/';
-        // let cartUrl = 'https://localhost/Manselvenia/Manselvenia/cart/?add-to-cart=';
-        // const separator = index === 0 ? '' : '&';
-        // cartUrl += `${separator} quantity[${product.quantity}]=${product.id}`;
 
         let cartUrl = process.env.REACT_APP_WEBSITE_URL + '?add-to-cart=';
         cart.forEach((product, index) => {
